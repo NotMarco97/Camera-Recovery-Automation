@@ -5,12 +5,8 @@ function GetConfiguration {
     if (-not $configExists) {
         throw "Configuration file not found."
     }
-
-    $content = Get-Content $configPath
-    $configuration = $content | ConvertFrom-Json
-
+    $configuration = LoadConfiguration $configPath
     ValidateConfiguration $configuration
-
     return $configuration
 }
 
@@ -25,4 +21,21 @@ function ValidateConfiguration {
     if ($isUsernameInvalid -or $isPasswordInvalid) {
         throw "Username or password is not valid."
     }
+}
+
+function LoadConfiguration{
+    param(
+        $configPath
+    )
+
+    $content = Get-Content $configPath
+
+    try {
+        $configuration = $content | ConvertFrom-Json
+    }
+    catch {
+        throw "Failed to parse configuration file as JSON."
+    }
+
+    return $configuration
 }
