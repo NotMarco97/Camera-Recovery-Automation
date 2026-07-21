@@ -1,20 +1,28 @@
-function GetConfiguration{
-    $check = Test-Path /home/marco/Desktop/powershell/kiosk-watchdog/config/settings.json
-    
-    if($check){
-        $content = Get-content /home/marco/Desktop/powershell/kiosk-watchdog/config/settings.json
-        $configuration = $content | ConvertFrom-json
-    }else {
+function GetConfiguration {
+    $configPath = Join-Path -Path $PSScriptRoot -ChildPath "../config/settings.json"
+    $configExists = Test-Path -Path $configPath
+
+    if (-not $configExists) {
         throw "Configuration file not found."
     }
 
-    $isUsernameInvalid = [string]::IsNullOrEmpty($configuration.username)
-    $isPasswordInvalid = [string]::IsNullOrEmpty($configuration.password)
-    
-    if($isUsernameInvalid -or $isPasswordInvalid){
+    $content = Get-Content $configPath
+    $configuration = $content | ConvertFrom-Json
 
-        throw "Username or Password is not valid."
-    }
+    ValidateConfiguration $configuration
 
     return $configuration
+}
+
+function ValidateConfiguration {
+    param(
+        $configuration
+    )
+
+    $isUsernameInvalid = [string]::IsNullOrEmpty($configuration.username)
+    $isPasswordInvalid = [string]::IsNullOrEmpty($configuration.password)
+
+    if ($isUsernameInvalid -or $isPasswordInvalid) {
+        throw "Username or password is not valid."
+    }
 }
