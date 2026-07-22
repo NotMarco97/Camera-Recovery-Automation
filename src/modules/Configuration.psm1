@@ -1,5 +1,5 @@
 function GetConfiguration {
-    $configPath = Join-Path -Path $PSScriptRoot -ChildPath "../config/settings.json"
+    $configPath = Join-Path -Path $PSScriptRoot -ChildPath "../../config/settings.example.json"
     $configExists = Test-Path -Path $configPath
 
     if (-not $configExists) {
@@ -39,3 +39,5 @@ function LoadConfiguration{
 
     return $configuration
 }
+
+Export-ModuleMember -Function GetConfiguration
