@@ -5,6 +5,7 @@
     "ignoreHttpsErrors": true,
     "headless": false,
     "startMaximized": true,
-    "viewportMode": "host"
+    "viewportMode": "host",
+    "monitorIntervalSeconds": 5
 
 }

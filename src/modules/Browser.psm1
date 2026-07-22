@@ -14,9 +14,4 @@ function StartBrowser{
     }
 }
 
-function CloseBrowser{
-
-}
-
 Export-ModuleMember -Function StartBrowser
-Export-ModuleMember -Function CloseBrowser

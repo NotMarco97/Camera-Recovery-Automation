@@ -39,7 +39,7 @@
 - Node.js integration for browser automation.
 - PowerShell → Node.js JSON configuration communication.
 - Playwright browser initialization.
-- Chromium launch automation.
+- Microsoft Edge launch through Playwright.
 - Browser context creation with configurable HTTPS handling.
 - Configurable viewport support.
 - Automated navigation to the configured NVR URL.
@@ -50,3 +50,23 @@
 
 - Transitioned browser automation to a configuration-driven architecture.
 - Centralized browser behavior through `settings.json`.
+
+---
+
+## Version 0.4
+
+### Added
+
+- Continuous session monitoring.
+- Video health monitoring.
+- Automatic session recovery.
+- Continuous browser restart loop.
+- Browser cleanup using `try...finally`.
+- Timestamped application logging.
+- Failure log generation.
+- Automatic failure log cleanup with configurable retention limit.
+
+### Changed
+
+- Shifted recovery strategy from in-place recovery to full browser session restart.
+- Reduced console logging to significant application state changes.

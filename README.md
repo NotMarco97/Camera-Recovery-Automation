@@ -20,7 +20,7 @@ The application is responsible for:
 - Navigating to the configured NVR.
 - Establishing an authenticated session.
 - Monitoring session health.
-- Restoring authentication when required.
+- Restoring authenticated sessions automatically.
 - Logging significant events and recovery attempts.
 
 ## Out of Scope
@@ -33,9 +33,11 @@ The following are managed outside of this application:
 - Intune configuration and deployment.
 - NVR configuration.
 
-## Project Roadmap
+---
 
-### ✅ Version 0.1 — Project Foundation
+# Project Roadmap
+
+## ✅ Version 0.1 — Project Foundation
 
 Completed:
 
@@ -46,7 +48,7 @@ Completed:
 
 ---
 
-### ✅ Version 0.2 — Configuration Foundation
+## ✅ Version 0.2 — Configuration Foundation
 
 Completed:
 
@@ -58,14 +60,14 @@ Completed:
 
 ---
 
-### ✅ Version 0.3 — Browser Authentication
+## ✅ Version 0.3 — Browser Authentication
 
 Completed:
 
 - Browser automation framework.
 - PowerShell → Node.js communication.
 - Playwright integration.
-- Chromium launch.
+- Microsoft Edge launch through Playwright.
 - Browser context creation.
 - Configurable HTTPS handling.
 - Configurable viewport support.
@@ -75,31 +77,35 @@ Completed:
 
 ---
 
-### 🚧 Version 0.4 — Session Monitoring
+## ✅ Version 0.4 — Session Monitoring
 
-Planned:
+Completed:
 
-- Detect logout.
-- Detect session timeout.
-- Detect unexpected navigation.
-- Detect browser closure or crash.
-- Restore authenticated sessions automatically.
+- Continuous session monitoring.
+- Video element health detection.
+- Automatic session restart when video is unavailable.
+- Browser lifecycle management.
+- Automatic browser cleanup.
+- Continuous recovery loop.
+- Application lifecycle logging.
+- Failure log generation.
+- Automatic failure log retention (100 most recent logs).
 
 ---
 
-### ⏳ Version 0.5 — Production Readiness
+## ⏳ Version 0.5 — Production Readiness
 
 Planned:
 
-- Application logging.
 - Executable packaging.
 - Deployment documentation.
 - Troubleshooting guidance.
+- Long-duration stability testing.
 - Operational validation.
 
 ---
 
-### ⏳ Version 0.6 — Enterprise Deployment
+## ⏳ Version 0.6 — Enterprise Deployment
 
 Planned:
 
@@ -108,16 +114,22 @@ Planned:
 - Windows kiosk testing.
 - Multi-device deployment guidance.
 
-## Current Status
+---
 
-**Current Version:** v0.3
+# Current Status
+
+**Current Version:** **v0.4**
 
 The application can currently:
 
 - Load and validate configuration.
-- Launch Chromium through Playwright.
-- Navigate to the configured NVR URL.
+- Launch Microsoft Edge through Playwright.
+- Navigate to the configured NVR.
 - Authenticate using configured credentials.
-- Create an authenticated browser session through a configuration-driven workflow.
+- Monitor the authenticated session.
+- Detect loss of the video feed.
+- Automatically restart the browser session.
+- Log significant lifecycle events.
+- Generate and retain failure logs automatically.
 
-The next development milestone is continuous session monitoring and automatic recovery.
+The next development milestone is packaging, deployment, and production validation.
