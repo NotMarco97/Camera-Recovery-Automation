@@ -5,7 +5,5 @@ Import-Module $configurationModulePath -Force
 Import-Module $browserModulePath -Force
 
 $config = GetConfiguration
-$config | Format-List *
-Write-Host "URL = '$($config.Url)'"
-startBrowser -url $config.Url
 
+StartBrowser -Configuration $config

@@ -1,12 +1,13 @@
 function StartBrowser{
     param(
-        [string]$url
+        $configuration
     )
 
     $browserScriptPath = Join-Path -Path $PSScriptRoot -ChildPath "../../scripts/launchBrowser.js"
 
     try{
-        & node $browserScriptPath $url
+        $json = $configuration | ConvertTo-Json -Compress
+        & node $browserScriptPath $json
     }
     catch{
         throw "Failed to start the browser."

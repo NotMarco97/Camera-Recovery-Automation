@@ -1,5 +1,5 @@
 function GetConfiguration {
-    $configPath = Join-Path -Path $PSScriptRoot -ChildPath "../../config/settings.example.json"
+    $configPath = Join-Path -Path $PSScriptRoot -ChildPath "../../config/settings.json"
     $configExists = Test-Path -Path $configPath
 
     if (-not $configExists) {

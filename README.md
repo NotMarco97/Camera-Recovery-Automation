@@ -2,36 +2,36 @@
 
 ## Purpose
 
-Automatically restore and maintain an authenticated NVR browser session after a reboot, browser crash, session timeout, or unexpected interruption without requiring user interaction.
+Automatically launch a browser, establish an authenticated NVR session, and restore that session after a reboot, browser crash, session timeout, or unexpected interruption without requiring user interaction.
 
 ## Goals
 
-* Automatically authenticate to the NVR web interface.
-* Restore authentication when the session is interrupted or expires.
-* Reduce manual intervention.
-* Log recovery attempts and failures.
+- Automatically authenticate to the NVR web interface.
+- Restore authentication when the session is interrupted or expires.
+- Reduce manual intervention.
+- Log recovery attempts and failures.
 
 ## Responsibilities
 
 The application is responsible for:
 
-* Loading and validating application configuration.
-* Detecting when the NVR session is no longer authenticated.
-* Restoring authentication automatically.
-* Monitoring the authenticated session for interruptions.
-* Logging significant events and recovery attempts.
+- Loading and validating application configuration.
+- Launching and configuring the browser.
+- Navigating to the configured NVR.
+- Establishing an authenticated session.
+- Monitoring session health.
+- Restoring authentication when required.
+- Logging significant events and recovery attempts.
 
 ## Out of Scope
 
 The following are managed outside of this application:
 
-* Windows kiosk configuration.
-* Windows auto-login.
-* Microsoft Edge startup.
-* Opening the NVR URL.
-* Intune configuration and deployment.
-* NVR system configuration.
-* Certificate trust management (unless browser automation becomes the only viable fallback).
+- Windows kiosk configuration.
+- Windows auto-logon configuration.
+- Automatic application launch after user sign-in (Scheduled Task, Startup folder, or Intune deployment).
+- Intune configuration and deployment.
+- NVR configuration.
 
 ## Project Roadmap
 
@@ -39,49 +39,85 @@ The following are managed outside of this application:
 
 Completed:
 
-* Project structure.
-* Module organization.
-* Entry point.
-* Initial documentation.
+- Project structure.
+- Module organization.
+- Entry point.
+- Initial documentation.
+
+---
 
 ### ✅ Version 0.2 — Configuration Foundation
 
 Completed:
 
-* Configuration loading.
-* JSON parsing.
-* Configuration validation.
-* Startup error handling.
-* Separation of responsibilities through modular functions.
+- Configuration loading.
+- JSON parsing.
+- Configuration validation.
+- Startup error handling.
+- Separation of responsibilities through modular functions.
 
-### 🚧 Version 0.3 — Authentication
+---
+
+### ✅ Version 0.3 — Browser Authentication
+
+Completed:
+
+- Browser automation framework.
+- PowerShell → Node.js communication.
+- Playwright integration.
+- Chromium launch.
+- Browser context creation.
+- Configurable HTTPS handling.
+- Configurable viewport support.
+- Navigation to the configured NVR URL.
+- Automated username/password authentication.
+- Authenticated browser session creation.
+
+---
+
+### 🚧 Version 0.4 — Session Monitoring
 
 Planned:
 
-* Browser automation framework.
-* Login page detection.
-* Username/password entry.
-* Login verification.
-* Certificate handling (only if infrastructure cannot eliminate it).
+- Detect logout.
+- Detect session timeout.
+- Detect unexpected navigation.
+- Detect browser closure or crash.
+- Restore authenticated sessions automatically.
 
-### Planned Future Versions
+---
 
-**Version 0.4 — Session Monitoring**
+### ⏳ Version 0.5 — Production Readiness
 
-* Detect logout.
-* Detect session timeout.
-* Refresh browser session.
-* Reauthenticate automatically.
+Planned:
 
-**Version 0.5 — Production Readiness**
+- Application logging.
+- Executable packaging.
+- Deployment documentation.
+- Troubleshooting guidance.
+- Operational validation.
 
-* Logging improvements.
-* Deployment documentation.
-* Troubleshooting guidance.
-* Operational validation.
+---
+
+### ⏳ Version 0.6 — Enterprise Deployment
+
+Planned:
+
+- Scheduled Task integration.
+- Intune deployment validation.
+- Windows kiosk testing.
+- Multi-device deployment guidance.
 
 ## Current Status
 
-**Current Version:** v0.2
+**Current Version:** v0.3
 
-The application successfully initializes, loads and validates configuration, and establishes the foundation required for browser automation and authentication in subsequent versions.
+The application can currently:
+
+- Load and validate configuration.
+- Launch Chromium through Playwright.
+- Navigate to the configured NVR URL.
+- Authenticate using configured credentials.
+- Create an authenticated browser session through a configuration-driven workflow.
+
+The next development milestone is continuous session monitoring and automatic recovery.
