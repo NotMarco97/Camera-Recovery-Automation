@@ -13,7 +13,7 @@ function log(message) {
 
 function saveFailureLog(reason) {
 
-    const logsDirectory = path.join(__dirname, 'logs');
+    const logsDirectory = path.join(__dirname, '..', 'logs');
 
     if (!fs.existsSync(logsDirectory)) {
         fs.mkdirSync(logsDirectory);
