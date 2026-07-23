@@ -58,7 +58,11 @@ function cleanupFailureLogs(logsDirectory) {
 
 (async () => {
 
-    const configuration = JSON.parse(process.argv[2]);
+    const configurationJson = Buffer
+    .from(process.argv[2], 'base64')
+    .toString('utf8');
+
+const configuration = JSON.parse(configurationJson);
 
     log("Camera Recovery Automation started.");
 
