@@ -13,7 +13,7 @@ function log(message) {
 
 function saveFailureLog(reason) {
 
-    const logsDirectory = path.join(__dirname, '..', 'logs');
+    const logsDirectory = path.join(__dirname, 'logs');
 
     if (!fs.existsSync(logsDirectory)) {
         fs.mkdirSync(logsDirectory);
@@ -58,11 +58,7 @@ function cleanupFailureLogs(logsDirectory) {
 
 (async () => {
 
-    const configurationJson = Buffer
-    .from(process.argv[2], 'base64')
-    .toString('utf8');
-
-    const configuration = JSON.parse(configurationJson);
+    const configuration = JSON.parse(process.argv[2]);
 
     log("Camera Recovery Automation started.");
 
