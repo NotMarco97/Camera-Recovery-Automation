@@ -62,7 +62,7 @@ function cleanupFailureLogs(logsDirectory) {
     .from(process.argv[2], 'base64')
     .toString('utf8');
 
-const configuration = JSON.parse(configurationJson);
+    const configuration = JSON.parse(configurationJson);
 
     log("Camera Recovery Automation started.");
 

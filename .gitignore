@@ -6,3 +6,6 @@ config/settings.json
 
 # Node dependencies
 node_modules/
+
+# Bundled production runtime
+runtime/
