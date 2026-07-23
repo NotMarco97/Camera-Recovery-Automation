@@ -19,7 +19,12 @@ function StartBrowser{
     $json = $configuration | ConvertTo-Json -Compress
     $jsonBytes = [System.Text.Encoding]::UTF8.GetBytes($json)
     $encodedConfiguration = [Convert]::ToBase64String($jsonBytes)
+
     & $nodeExecutable $browserScriptPath $encodedConfiguration
+
+    if ($LASTEXITCODE -ne 0) {
+    throw "Node process exited with code $LASTEXITCODE."
+    }
 
     }
     catch{
