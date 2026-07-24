@@ -6,3 +6,6 @@ config/settings.json
 
 # Node dependencies
 node_modules/
+
+# deployment
+deployment/payload/
