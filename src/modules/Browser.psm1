@@ -7,7 +7,7 @@ function StartBrowser{
 
     try{
         $json = $configuration | ConvertTo-Json -Compress
-        & node $browserScriptPath $json
+        $json | & node $browserScriptPath
     }
     catch{
         throw "Failed to start the browser."

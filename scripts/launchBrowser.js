@@ -58,17 +58,22 @@ function cleanupFailureLogs(logsDirectory) {
 
 (async () => {
 
-    const configuration = JSON.parse(process.argv[2]);
+    process.stdin.setEncoding('utf-8');
+    let configuration = '';
+    process.stdin.on('data', (chunk) => {
+        configuration += chunk;
+    });
 
-    log("Camera Recovery Automation started.");
+    process.stdin.on('end', () => {
+        configuration = JSON.parse(configuration);
+        runAutomation(configuration);
+    });
 
-    while (true) {
 
-        restartCount++;
-        log(`Starting browser session #${restartCount}.`);
 
-        await launchBrowser(configuration);
-    }
+    
+
+ 
 
 })();
 
@@ -145,5 +150,17 @@ async function monitorSession(page, intervalMs) {
             log("Video detected. Monitoring active.");
             monitoringStarted = true;
         }
+    }
+}
+
+async function runAutomation(configuration) {
+   while (true) {
+
+    log("Camera Recovery Automation started.");
+    
+        restartCount++;
+        log(`Starting browser session #${restartCount}.`);
+
+        await launchBrowser(configuration);
     }
 }

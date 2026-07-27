@@ -70,3 +70,6 @@
 
 - Shifted recovery strategy from in-place recovery to full browser session restart.
 - Reduced console logging to significant application state changes.
+
+## Version 0.5
+
