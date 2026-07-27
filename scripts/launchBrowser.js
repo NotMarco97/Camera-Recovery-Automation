@@ -159,7 +159,20 @@ async function runAutomation(configuration) {
    while (true) {
         restartCount++;
         log(`Starting browser session #${restartCount}.`);
-
+    
+    try{
         await launchBrowser(configuration);
+
+    }catch(error){
+            
+            log(`Session #${restartCount} failed: ${error.message}`);
+            
+            saveFailureLog(`Browser launch failure - ${error.message}`);
+
+            log("Waiting 5 seconds before attempting restart...");
+            await new Promise(resolve => setTimeout(resolve, 5000));
+     }
+
     }
+
 }
