@@ -7,3 +7,5 @@ Import-Module $browserModulePath -Force
 $config = GetConfiguration
 
 StartBrowser -Configuration $config
+
+throw "Camera Recovery Automation stopped unexpectedly."
