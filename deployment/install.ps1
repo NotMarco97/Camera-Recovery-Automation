@@ -6,6 +6,7 @@ $cameraRecoveryPath = Join-Path -Path $env:ProgramData -ChildPath "Camera-Recove
 
 $logsDirectory = Join-Path -Path $cameraRecoveryPath -ChildPath "scripts/logs"
 
+
 $checkPayloadPath = Test-Path -Path $payloadPath
 
 if (-not $checkPayloadPath) {
@@ -55,6 +56,15 @@ $taskSettings = New-ScheduledTaskSettingsSet -RestartInterval (New-TimeSpan -Min
 
 $taskName = "Camera Kiosk Recovery"
 
+
+$installMarkerPath = Join-Path -Path $cameraRecoveryPath -ChildPath "install.complete"
+
+if (Test-Path -Path $installMarkerPath) {
+    Remove-Item -Path $installMarkerPath -Force
+}
+
 Register-ScheduledTask -TaskName $taskName -Action $taskAction -Trigger $taskTrigger -Principal $taskPrincipal -Settings $taskSettings -Force | Out-Null
+
+New-Item -ItemType File -Path $installMarkerPath -Force | Out-Null
 
 exit 0

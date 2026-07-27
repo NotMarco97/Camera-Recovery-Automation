@@ -18,6 +18,7 @@ $removalTargets = @(
     "scripts\launchBrowser.js"
     "package.json"
     "package-lock.json"
+    "install.complete"
 )
 
 foreach ($target in $removalTargets) {
