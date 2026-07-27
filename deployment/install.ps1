@@ -25,4 +25,6 @@ Copy-Item -Path $payloadPath\* -Destination $cameraRecoveryPath -Recurse -Force
 New-Item -ItemType Directory -Path $logsDirectory -Force | Out-Null
 
 
-$logsPermission = $kioskAccount
+$logsPermission = "${kioskAccount}:(OI)(CI)M"
+
+Get-Process $logsPermission

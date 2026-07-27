@@ -154,10 +154,9 @@ async function monitorSession(page, intervalMs) {
 }
 
 async function runAutomation(configuration) {
-   while (true) {
-
     log("Camera Recovery Automation started.");
     
+   while (true) {
         restartCount++;
         log(`Starting browser session #${restartCount}.`);
 
