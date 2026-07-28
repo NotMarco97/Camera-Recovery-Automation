@@ -12,7 +12,6 @@ function log(message) {
 }
 
 function saveFailureLog(reason) {
-
     const logsDirectory = path.join(__dirname, 'logs');
 
     if (!fs.existsSync(logsDirectory)) {
@@ -40,7 +39,6 @@ Reason: ${reason}
 }
 
 function cleanupFailureLogs(logsDirectory) {
-
     const logFiles = fs.readdirSync(logsDirectory)
         .filter(file => file.endsWith('.log'))
         .map(file => ({
@@ -57,9 +55,10 @@ function cleanupFailureLogs(logsDirectory) {
 }
 
 (async () => {
-
     process.stdin.setEncoding('utf-8');
+
     let configuration = '';
+
     process.stdin.on('data', (chunk) => {
         configuration += chunk;
     });
@@ -68,31 +67,20 @@ function cleanupFailureLogs(logsDirectory) {
         configuration = JSON.parse(configuration);
         runAutomation(configuration);
     });
-
-
-
-    
-
- 
-
 })();
 
 async function launchBrowser(configuration) {
-
     log("Launching Microsoft Edge...");
 
     const browser = await chromium.launch({
         channel: 'msedge',
         headless: configuration.headless,
         args: [
-            '--kiosk',
-            '--edge-kiosk-type=fullscreen',
             '--no-first-run'
         ]
     });
-    
-    try {
 
+    try {
         const context = await browser.newContext({
             httpCredentials: {
                 username: configuration.username,
@@ -111,37 +99,45 @@ async function launchBrowser(configuration) {
         });
 
         const page = await context.newPage();
+        const client = await context.newCDPSession(page);
+
+        const { windowId } = await client.send(
+            'Browser.getWindowForTarget'
+        );
+
+        await client.send('Browser.setWindowBounds', {
+            windowId,
+            bounds: {
+                windowState: 'fullscreen'
+            }
+        });
 
         log("Navigating to NVR...");
         await page.goto(configuration.url);
 
         log("Connected. Monitoring session.");
 
-        const intervalMs = configuration.monitorIntervalSeconds * 1000;
+        const intervalMs =
+            configuration.monitorIntervalSeconds * 1000;
 
         await monitorSession(page, intervalMs);
 
     } finally {
-
         log("Closing browser.");
         await browser.close();
-
     }
 }
 
 async function monitorSession(page, intervalMs) {
-
     let monitoringStarted = false;
 
     while (true) {
-
         await page.waitForTimeout(intervalMs);
 
         const video = page.locator('video').first();
         const videoDetected = await video.isVisible();
 
         if (!videoDetected) {
-
             saveFailureLog("Video missing");
 
             log("Video missing. Restarting session...");
@@ -157,24 +153,27 @@ async function monitorSession(page, intervalMs) {
 
 async function runAutomation(configuration) {
     log("Camera Recovery Automation started.");
-    
-   while (true) {
-        restartCount++;
-        log(`Starting browser session #${restartCount}.`);
-    
-    try{
-        await launchBrowser(configuration);
 
-    }catch(error){
-            
+    while (true) {
+        restartCount++;
+
+        log(`Starting browser session #${restartCount}.`);
+
+        try {
+            await launchBrowser(configuration);
+
+        } catch (error) {
             log(`Session #${restartCount} failed: ${error.message}`);
-            
-            saveFailureLog(`Browser launch failure - ${error.message}`);
+
+            saveFailureLog(
+                `Browser launch failure - ${error.message}`
+            );
 
             log("Waiting 5 seconds before attempting restart...");
-            await new Promise(resolve => setTimeout(resolve, 5000));
-     }
 
+            await new Promise(
+                resolve => setTimeout(resolve, 5000)
+            );
+        }
     }
-
 }
