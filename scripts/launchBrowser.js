@@ -84,11 +84,13 @@ async function launchBrowser(configuration) {
     const browser = await chromium.launch({
         channel: 'msedge',
         headless: configuration.headless,
-        args: configuration.startMaximized
-            ? ['--start-maximized']
-            : []
+        args: [
+            '--kiosk',
+            '--edge-kiosk-type=fullscreen',
+            '--no-first-run'
+        ]
     });
-
+    
     try {
 
         const context = await browser.newContext({
