@@ -21,6 +21,8 @@ The application launches Microsoft Edge through Playwright, connects to a config
 ### Configuration
 - JSON
 
+---
+
 ## Current Status
 
 **Current version:** v0.6.2  
