@@ -4,6 +4,23 @@ Camera Kiosk Recovery is a Windows kiosk automation application that maintains a
 
 The application launches Microsoft Edge through Playwright, connects to a configured NVR, monitors the video session, and automatically rebuilds the browser session after a browser closure, session failure, missing video feed, or other interruption.
 
+## Technology Stack
+
+### Runtime
+- Windows PowerShell 5.1
+- Node.js
+- JavaScript
+- Microsoft Playwright
+- Microsoft Edge (Chromium)
+
+### Deployment
+- Microsoft Intune (Win32 Applications)
+- Microsoft Win32 Content Prep Tool (IntuneWinAppUtil)
+- Windows Task Scheduler
+
+### Configuration
+- JSON
+
 ## Current Status
 
 **Current version:** v0.6.2  
