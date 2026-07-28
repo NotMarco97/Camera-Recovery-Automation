@@ -15,8 +15,14 @@ Example:
 
 ```json
 {
-    "username": "your_username",
-    "password": "your_password"
+    "url": "https://google.com",
+    "username": "your-username",
+    "password": "your-password",
+    "ignoreHttpsErrors": true,
+    "headless": false,
+    "startMaximized": true,
+    "viewportMode": "host",
+    "monitorIntervalSeconds": 5
 }
 ```
 
