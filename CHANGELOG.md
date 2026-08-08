@@ -73,7 +73,7 @@ The project uses incremental pre-release versions while deployment behavior and 
 - Windows 11 Assigned Access deployment validation.
 - Managed installation as the SYSTEM account.
 - Dedicated deployment-specific application configuration.
-- Enterprise installation and update workflow.
+- Installation and update workflow.
 
 ### Changed
 
