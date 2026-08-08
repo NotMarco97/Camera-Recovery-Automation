@@ -113,7 +113,7 @@ The JavaScript recovery loop owns browser-session recovery. Closing Edge does no
 
 If the Node.js application itself exits unexpectedly, `main.ps1` returns a failure. The Scheduled Task can then provide a second recovery boundary.
 
-### Model 2 — Enterprise Deployment
+### Model 2 — Deployment
 
 ```text
 Source repository
