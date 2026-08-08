@@ -471,7 +471,7 @@ The application does not create or manage:
 - NVR users, permissions, or configuration.
 - Credential creation or rotation.
 - Network access to the NVR.
-- Enterprise monitoring or automatic ticket creation.
+- Monitoring or automatic ticket creation.
 
 These responsibilities belong to the surrounding device-management and operational environment.
 
