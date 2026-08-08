@@ -70,7 +70,7 @@ Camera Kiosk Recovery automatically restores the browser session when one of the
 The project is separated into two models:
 
 1. The **application runtime model**, which performs and monitors the NVR automation.
-2. The **enterprise deployment model**, which installs, starts, detects, updates, and removes the application.
+2. The **deployment model**, which installs, starts, detects, updates, and removes the application.
 
 Keeping these models separate prevents the browser-recovery logic from becoming dependent on Intune or a particular kiosk policy.
 
@@ -519,7 +519,7 @@ Added video-health monitoring, failure logging, retention, browser cleanup, and 
 
 Added the portable runtime design, deployment payload, installation and uninstallation scripts, permanent application storage, permissions, and detection marker.
 
-### v0.6 — Enterprise Deployment
+### v0.6 — Deployment
 
 Added Scheduled Task startup and validated the application as an Intune Win32 deployment on a Windows 11 kiosk.
 
