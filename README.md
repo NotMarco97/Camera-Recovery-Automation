@@ -493,8 +493,6 @@ The following behaviors have been validated:
 - Preservation of failure logs during uninstallation.
 - Intune package replacement and redeployment.
 
-Long-duration stability testing remains ongoing.
-
 ---
 
 ## Version History
